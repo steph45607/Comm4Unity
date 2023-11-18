@@ -65,9 +65,31 @@
         width: 50%;
         margin: 2%;
       }
-      a{
+      a {
         color: green;
         text-decoration: none;
+      }
+      .card {
+        border-style: solid;
+        padding: 5% 3%;
+        border-radius: 20px;
+        text-align: center;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+      }
+      .card-container {
+        display: flex;
+        align-items: center;
+      }
+      .middle {
+        text-align: center;
+      }
+      img {
+        height: 16em;
+        width: auto;
       }
     </style>
   </head>
@@ -75,14 +97,38 @@
     <div>
       <h1>Comm4Unity</h1>
       <h2>Welcome to Comm4Unity</h2>
-      <div class="container">
+      <p>
+        Comm4Unity goal is to help students in completing their SAT and ComServ,
+        as their graduationa requirements.
+      </p>
+      <p>
+        We also want to help organizations to promote their events in one place,
+        to ease the searching process for students.
+      </p>
+      <!-- <div class="container">
         <p class="welcome">
-          First time here? Go to <a href="">tutorial</a> for step by step instructions.
+          First time here? Go to <a href="">tutorial</a> for step by step
+          instructions.
         </p>
         <p class="welcome">
           If you are a president of a club or a lead of a group and you want to
           make a post in Comm4Unity, please <a href="">register here</a>
         </p>
+      </div> -->
+      <div class="card-container">
+        <div class="card">
+          <img src="/comm4unity/src/student.jpg" alt="" />
+
+          <p>Student looking for SAT points or Community Service hours</p>
+        </div>
+
+        <h3 class="middle">Which one are you?</h3>
+
+        <div class="card">
+          <img src="/comm4unity/src/organization.jpg" alt="" />
+          
+          <p>Organization leader, looking for participants or volunteers</p>
+        </div>
       </div>
     </div>
 
