@@ -1,9 +1,8 @@
 import React from "react";
-import EventBtn from "./event-btn";
 
 function Event(){
     return(
-        <EventBtn/>
+        <p>test</p>
     )
 }
 

@@ -1,7 +1,5 @@
 .event-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly
-    ;
-    /* margin: 1em 0 ; */
+    justify-content: space-evenly;
 }
