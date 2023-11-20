@@ -1,9 +1,10 @@
-import React from "react";
+import {React} from "react";
 import Navbar from "./navbar";
 import EventBtn from "./event-btn";
 // import events from "../assets/events.json";
 import "../styles/student.css";
 import events from "../assets/events.js"
+// import Event from "./Event"
 import { Link } from "react-router-dom";
 
 function Student() {
@@ -13,7 +14,7 @@ function Student() {
       <div className="event-row">
         {events.map((event) => {
           return (
-            <Link to={"/event"}>
+            <Link to={`/event/${(event.id)}`}>
             <EventBtn
               title={event.title}
               org={event.org}
@@ -21,7 +22,6 @@ function Student() {
               poster= {event.poster}
             />
             </Link>
-            
           );
         })}
       </div>
