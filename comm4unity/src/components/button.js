@@ -1,13 +1,17 @@
 import React from "react";
 import "../styles/button.css";
 
-function Button({text}) {
+function Button({ text, logo }) {
   return (
-    <div className="btn">
-        <div className="btn-text">
-            <p>{text}</p>
-        </div>
+    <div>
+    <div className="btn" style={{ backgroundImage: `url(${logo})` }}>
+      <div className="btn-text">
+        <p>{text}</p>
+      </div>
     </div>
+
+    </div>
+    
   );
 }
 

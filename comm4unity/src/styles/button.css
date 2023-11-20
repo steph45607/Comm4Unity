@@ -1,15 +1,18 @@
 .btn {
     border-radius: 25px;
-    background: blue;
-    height: 13em;
-    width: 30em;
+    /* background: blue; */
+    background-size: cover;
+    background-position: 0;
+    height: 18em;
+    width: 25em;
     position: relative;
 }
 
 .btn-text {
-    background-color: chocolate;
+    background-color: white;
+    color: black;
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-radius: 0 0 25px 25px ;
+    border-radius: 0 0 25px 25px;
 }
