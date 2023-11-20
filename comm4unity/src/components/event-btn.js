@@ -1,12 +1,20 @@
 import React from "react";
-import "../styles/eventBtn.css"
+import "../styles/eventBtn.css";
 
-function Event(){
-    return(
-        <div className="container">
-            
+function EventBtn({ title, reward, org, poster }) {
+  return (<div>
+
+    <div className="event-container" style={{backgroundImage:`url(${poster})`}}>
+    </div>
+      <div className="event-text">
+        <p>{title}</p>
+        <div className="org-reward">
+          <p>{org}</p>
+          <p className="reward">{reward}</p>
         </div>
-    )
+      </div>
+  </div>
+  );
 }
 
-export default Event;
+export default EventBtn;

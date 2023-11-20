@@ -1,0 +1,31 @@
+[
+    {
+        "title":"Intro to GDSC",
+        "org" : "GDSC",
+        "reward": "SAT",
+        "date":"25/11/23",
+        "details":"Here is the details",
+        "poster":"../assets/gdsc.png"
+    },
+    {
+        "title":"Intro to Robogals",
+        "org" : "Robogals",
+        "reward": "SAT",
+        "date":"30/11/23",
+        "details":"Here is the details"
+    },
+    {
+        "title":"Intro to HIMTI",
+        "org" : "HIMTI",
+        "reward": "SAT",
+        "date":"4/12/23",
+        "details":"Here is the details"
+    },
+    {
+        "title":"Intro to HIMTI",
+        "org" : "HIMTI",
+        "reward": "SAT",
+        "date":"4/12/23",
+        "details":"Here is the details"
+    }
+]
