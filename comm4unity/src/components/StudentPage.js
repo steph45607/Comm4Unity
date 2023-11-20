@@ -1,10 +1,8 @@
 import {React} from "react";
 import Navbar from "./navbar";
 import EventBtn from "./event-btn";
-// import events from "../assets/events.json";
 import "../styles/student.css";
 import events from "../assets/events.js"
-// import Event from "./Event"
 import { Link } from "react-router-dom";
 
 function Student() {
@@ -14,7 +12,7 @@ function Student() {
       <div className="event-row">
         {events.map((event) => {
           return (
-            <Link to={`/event/${(event.id)}`}>
+            <Link to={`/event/${(event.id)}`} style={{ textDecoration: "none" }}>
             <EventBtn
               title={event.title}
               org={event.org}
@@ -25,7 +23,6 @@ function Student() {
           );
         })}
       </div>
-      {/* <EventBtn title={"Leadership event"} org={"AWS"} reward={"SAT"} /> */}
     </div>
   );
 }

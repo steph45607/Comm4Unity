@@ -3,14 +3,12 @@ import "../styles/eventBtn.css";
 
 function EventBtn({ title, reward, org, poster }) {
   return (
-  <div className="event-btn-container">
-    <div className="event-container" style={{backgroundImage:`url(${poster})`}}></div>
-    <div className="event-text">
-        <p>{title}</p>
-        <div className="org-reward">
-            <p>{org}</p>
-            <p className="reward">{reward}</p>
-        </div>
+  <div class="card">
+    <img class="poster" src={poster}></img>
+    <div class="textBox" style={{ textDecoration: "none", color: "" }}>
+        <p class="text head">{title}</p>
+        <p class="text org">{org}</p>
+        <p class="text reward">{reward}</p>
     </div>
   </div>
   );
