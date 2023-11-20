@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "./navbar";
-import Form from "./Form";
 import "../styles/org.css";
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom'
