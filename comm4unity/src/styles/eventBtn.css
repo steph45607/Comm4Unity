@@ -1,4 +1,45 @@
-.container {
-    background-color: blue;
-    height: ;
+/* .btn-container {
+    display: flex;
+    float: inline-start;
+} */
+
+.event-btn-container{
+    margin-bottom: 10em;
+}
+
+.event-container {
+    height: 21em;
+    width: 21em;
+    border-radius: 20px 20px 0 0;
+    /* position: absolute; */
+    /* margin-left: 2em; */
+    background-size: cover;
+}
+
+.event-text {
+    background-color: white;
+    color: black;
+    position: absolute;
+    /* bottom: 0; */
+    width: 21em;
+    height: 6em;
+    /* margin-left: 2em; */
+    border-radius: 0 0 20px 20px;
+}
+
+.org-reward {
+    display: flex;
+    direction: column;
+    justify-content: space-between;
+}
+
+.reward {
+    background-color: cadetblue;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+
+p {
+    padding: 0 1em;
+    margin: 1em 0;
 }
