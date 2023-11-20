@@ -1,0 +1,51 @@
+.container2 {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    border:none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.head {
+    line-height: 0.5;
+    text-align: center;
+    margin-top:100px;
+    margin-bottom:50px;
+}
+
+.head span {
+    display: inline-block;
+    position: relative;
+}
+
+.head span::before,
+.head span::after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    top: 5px;
+    width: 600px;
+}
+
+.head span::before {
+    right: 100%;
+    margin-right: 25px;
+}
+.head span::after {
+    left: 100%;
+    margin-left: 25px;
+}
