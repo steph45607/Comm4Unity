@@ -1,40 +1,52 @@
 const events = [
-    {
-        "id":"GDSC1",
-        "title":"Intro to GDSC",
-        "org" : "GDSC",
-        "reward": "SAT",
-        "date":"25/11/23",
-        "details":"Here is the details",
-        "poster":require("../assets/gdsc.png")
-    },
-    {
-        "id":"Robogals2",
-        "title":"Intro to Robogals",
-        "org" : "Robogals",
-        "reward": "SAT",
-        "date":"30/11/23",
-        "details":"Here is the details",
-        "poster":require("../assets/robogals.png")
-    },
-    {
-        "id":"HIMTI3",
-        "title":"Intro to HIMTI",
-        "org" : "HIMTI",
-        "reward": "SAT",
-        "date":"4/12/23",
-        "details":"Here is the details",
-        "poster":require("../assets/himti.png")
-    },
-    {
-        "id":"HIMMCOMM4",
-        "title":"Intro to HIMMCOMM",
-        "org" : "HIMMCOMM",
-        "reward": "SAT",
-        "date":"4/12/23",
-        "details":"Here is the details",
-        "poster":require("../assets/himmcomm.png")
-    }
-]
+  {
+    id: "GDSC1",
+    title: "Intro to GDSC",
+    org: "GDSC",
+    reward: "SAT",
+    date: "25/11/23",
+    time: "10:00 AM",
+    location: "zoom",
+    details: "🚀 Calling all tech enthusiasts! Master the Art of App Creation - Join Study Jam by Tech Devs: Technical Workshop on Flutter and Build Your Very Own Shopping App from the Ground Up! 📱🛒 Event Details: 📅 Date: Saturday, 25th November 2023 🕐 Time: 1PM - 4PM 📍 Venue: Online via Zoom Get ready for an immersive learning experience as we dive into the world of Flutter – Google’s cutting-edge framework for building natively compiled applications for mobile, web, and desktop from a single codebase. 🔗 Registration is Open! Secure Your Spot: bit.ly/GDSCStudyJamFlutter Don’t miss out on this golden opportunity to boost your Flutter skills and elevate your app development game. Whether you’re a beginner or an experienced developer, there’s something for everyone! 🌐 Connect with us online using #FlutterTechWorkshop. Let’s code, create, and innovate together! 🚀💻 See you at the workshop!",
+    poster: require("../assets/gdsc.png"),
+    link: "https://bit.ly/GDSCStudyJamFlutter",
+  },
+  {
+    id: "Robogals2",
+    title: "Intro to Robogals",
+    org: "Robogals",
+    reward: "SAT",
+    date: "30/11/23",
+    time: "10:00 AM",
+    location: "FX Binus",
+    details: "Here is the details",
+    poster: require("../assets/robogals.png"),
+    link: "https://bit.ly/GDSCStudyJamFlutter",
+  },
+  {
+    id: "HIMTI3",
+    title: "Intro to HIMTI",
+    org: "HIMTI",
+    reward: "SAT",
+    date: "4/12/23",
+    time: "10:00 AM",
+    location: "Binus KMG",
+    details: "Here is the details",
+    poster: require("../assets/himti.png"),
+    link: "https://bit.ly/GDSCStudyJamFlutter",
+  },
+  {
+    id: "HIMMCOMM4",
+    title: "Intro to HIMMCOMM",
+    org: "HIMMCOMM",
+    reward: "ComServ",
+    date: "4/12/23",
+    time: "10:00 AM",
+    location: "zoom",
+    details: "description here",
+    poster: require("../assets/himmcomm.png"),
+    link: "https://bit.ly/GDSCStudyJamFlutter",
+  },
+];
 
 export default events;
