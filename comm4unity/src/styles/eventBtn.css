@@ -1,14 +1,23 @@
+/* .btn-container {
+    display: flex;
+    float: inline-start;
+} */
+
+.event-btn-container{
+    margin-bottom: 10em;
+}
+
 .event-container {
     height: 21em;
     width: 21em;
     border-radius: 20px 20px 0 0;
-    position: relative;
+    /* position: absolute; */
     /* margin-left: 2em; */
     background-size: cover;
 }
 
-.event-text{
-    background-color:white;
+.event-text {
+    background-color: white;
     color: black;
     position: absolute;
     /* bottom: 0; */
@@ -18,19 +27,19 @@
     border-radius: 0 0 20px 20px;
 }
 
-.org-reward{
+.org-reward {
     display: flex;
     direction: column;
     justify-content: space-between;
 }
 
-.reward{
+.reward {
     background-color: cadetblue;
     border-radius: 5px;
     margin-right: 1em;
 }
 
-p{
-    padding:0 1em;
+p {
+    padding: 0 1em;
     margin: 1em 0;
 }
