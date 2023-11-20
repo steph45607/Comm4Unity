@@ -30,6 +30,7 @@
 .textBox > .head {
     margin-top:40px;
     font-size: 30px;
+    line-height: 1em;
 }
 
 .textBox > .reward {
