@@ -81,3 +81,9 @@
 .card:hover > .textBox {
     opacity: 1;
 }
+
+@media (max-width: 1024px) {
+    .card{
+        margin-bottom: 1em;
+    }
+}

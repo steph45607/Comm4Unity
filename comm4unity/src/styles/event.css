@@ -40,14 +40,34 @@ h3 {
     background-color: steelblue;
     border-radius: 15px;
     width: fit-content;
+    /* padding: 0; */
     margin-top: 1em;
 }
 
 p {
     margin: 0;
+    font-size: large;
+    padding: 0.5em;
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
+}
+
+img{
+    border-radius: 20px;
+}
+
+@media (max-width:1024px) {
+    p{
+        font-size: 1rem;
+    }
+    .event-container{
+        text-align: justify;
+        justify-content: center;
+    }
+    .event-left{
+        margin-bottom: 1em;
+    }
 }

@@ -26,10 +26,10 @@ function Event() {
       <div className="event-container">
         <div className="event-left">
           <img className="event-image" src={selectedEvent.poster} alt=""></img>
-          <h3>
+          <p>
             {selectedEvent.date} | {selectedEvent.time}
-          </h3>
-          <h3>Location: {selectedEvent.location}</h3>
+          </p>
+          <p>Location: {selectedEvent.location}</p>
           <div className="event-btn">
             <a href={selectedEvent.link} target="_blank">
                 <p>Apply</p>
