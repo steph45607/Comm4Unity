@@ -9,19 +9,24 @@
 }
 
 .event-image {
-    height: 25em;
+    height: auto;
     width: 25em;
+    border-radius: 20px;
+    /* object-fit: contain; */
 }
 
 .event-left {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    margin-top: 50px;
 }
 
 .event-right {
     /* margin-left: 5em; */
     width: 55em;
+    flex: 1;
 }
 
 h3 {
@@ -48,15 +53,12 @@ p {
     margin: 0;
     font-size: large;
     padding: 0.5em;
+    white-space: pre-line;
 }
 
 a {
     color: white;
     text-decoration: none;
-}
-
-img{
-    border-radius: 20px;
 }
 
 @media (max-width:1024px) {
