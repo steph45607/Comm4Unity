@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Student() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="event-row">
         {events.map((event) => {
           return (

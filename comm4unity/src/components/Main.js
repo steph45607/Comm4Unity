@@ -9,11 +9,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import Student from "./StudentPage";
+import Organization from "./OrgPage";
 // import {getAuth} from "firebase/auth"
 
 function Main() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
   const fetchUserName = async () => {
     try {
@@ -26,6 +29,7 @@ function Main() {
       const data = doc.docs[0].data();
       // console.log(data)
       setName(data.name);
+      setRole(data.role);
       // console.log(data)
     } catch (err) {
       console.error(err);
@@ -43,8 +47,10 @@ function Main() {
       <Navbar />
       <p>Name: {name}</p>
       <p>Email: {user?.email}</p>
+      <p>Role: {role}</p>
       <button onClick={logout}>Logout</button>
-      <div className="btn-container">
+      {role == "student" ? <Student/>:<Organization/>}
+      {/* <div className="btn-container">
         <Link
           to={"/student"}
           style={{ textDecoration: "none", color: "white" }}
@@ -57,7 +63,7 @@ function Main() {
             text={"Organization wants to promote their website"}
           />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

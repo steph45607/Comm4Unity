@@ -80,6 +80,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      role: "student"
     });
     alert(user)
   } catch (err) {

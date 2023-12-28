@@ -17,9 +17,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <BrowserRouter>
+                {/* <BrowserRouter>
                     <Navbar />
-                </BrowserRouter>
+                </BrowserRouter> */}
                 <h1 className="head"><span> Organization Form </span></h1>
                 <div id="ff-compose"></div>
             </div>
