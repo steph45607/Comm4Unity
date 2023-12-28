@@ -11,7 +11,7 @@ function Navbar() {
   };
   return (
     <div className="container">
-        <Link to={"/"} style={{textDecoration:'none', color:'white'}} onClick={handleRefresh}>
+        <Link to={"/index"} style={{textDecoration:'none', color:'white'}} onClick={handleRefresh}>
             <h2 className="navbar-top">Comm4Unity</h2>
         </Link>
       <img src={picture} alt=""></img>
