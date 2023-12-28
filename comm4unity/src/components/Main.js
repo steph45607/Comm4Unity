@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Student from "./StudentPage";
-import Organization from "./OrgPage";
+import OrgHolder from "./OrgHolder";
 // import {getAuth} from "firebase/auth"
 
 function Main() {
@@ -49,7 +49,7 @@ function Main() {
       <p>Email: {user?.email}</p>
       <p>Role: {role}</p>
       <button onClick={logout}>Logout</button>
-      {role == "student" ? <Student/>:<Organization/>}
+      {role == "organization" ? <OrgHolder/>:<Student/>}
       {/* <div className="btn-container">
         <Link
           to={"/student"}
