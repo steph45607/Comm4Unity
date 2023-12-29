@@ -18,9 +18,10 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/reset" element={<Reset />} />
+        {/* <Route exxact path="/test" element={<CreateEventForm />} /> */}
         {/* <Route exact path="/index" element={<Dashboard />} /> */}
         <Route exact path="/index" element={<Main />} />
-        <Route exact path="/test" element={<Test />} />
+        {/* <Route exact path="/test" element={<Test />} /> */}
         <Route exact path="/organization" element={<Organization />} />
         <Route exact path="/student" element={<Student />} />
         <Route exact path="/event/:id" element={<Event />} />
