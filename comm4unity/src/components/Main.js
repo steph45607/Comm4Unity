@@ -21,6 +21,12 @@ const CreateEventForm = () => {
     o_id: "",
   });
 
+  const [reg, setReg] = useState({
+    e_id: "",
+    s_id: ""
+  })
+
+  const url = 'http://127.0.0.1:8000';
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -28,6 +34,55 @@ const CreateEventForm = () => {
   const [showEventDetails, setShowEventDetails] = useState(false);
   const navigate = useNavigate();
   const [userEvents, setUserEvents] = useState([]);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  // const [registrationCount, setRegistrationCount] = useState(null);
+
+  // const fetchRegistrationCount = async () => {
+  //   try {
+  //     if (!selectedEventId) {
+  //       console.error("No selected event ID");
+  //       return;
+  //     }
+
+  //     const registrationCountResponse = await axios.get(`${url}/event/${selectedEventId}/registration_count`);
+  //     setRegistrationCount(registrationCountResponse.data.registration_count);
+  //   } catch (error) {
+  //     console.error("Error fetching registration count:", error.message);
+  //   }
+  // };
+
+  const fetchAllEvents = async () => {
+    try {
+      const allEventsResponse = await axios.get(`${url}/event/get_all_events`);
+      setUserEvents(allEventsResponse.data);
+    } catch (error) {
+      console.error("Error fetching all events:", error.message);
+    }
+  };
+
+  const handleEventClick = (eventId) => {
+    setSelectedEventId(eventId);
+  };
+
+  const fetchEventId = async () => {
+    try {
+      if (!selectedEventId) {
+        console.error("No selected event ID");
+        return;
+      }
+
+      const oneEventResponse = await axios.get(`${url}/event/${selectedEventId}`);
+      setSelectedEvent(oneEventResponse.data);
+      setReg({
+        ...reg,
+        e_id: selectedEventId,
+        s_id: user?.uid
+      });
+    } catch (error) {
+      console.error("Error fetching event details:", error.message);
+    }
+  };
 
   const fetchUserEvents = async () => {
     try {
@@ -37,7 +92,7 @@ const CreateEventForm = () => {
         return;
       }
 
-      const userEventsResponse = await axios.get(`http://localhost:8000/events/get_events/${userUid}`);
+      const userEventsResponse = await axios.get(`${url}/events/get_events/${userUid}`);
       setUserEvents(userEventsResponse.data);
     } catch (error) {
       console.error("Error fetching user events:", error.message);
@@ -53,7 +108,7 @@ const CreateEventForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8000/event/create_event/${event.o_id}`, {
+      const response = await fetch(`${url}/event/create_event/${event.o_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,12 +153,38 @@ const CreateEventForm = () => {
     }
   };
 
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post(`${url}/registrations/${user?.uid}/${selectedEventId}`, reg);
+      console.log(response.data);
+      setMessage(`Successfully registered for the event: ${selectedEvent.title}`);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setMessage(`Error registering for the event: ${JSON.stringify(error.response.data)}`);
+      } else {
+        setMessage(`Error registering for the event: ${error.message}`);
+      }
+    }
+  };
+
+
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-    fetchUserEvents();
-  }, [user, loading]);
+    if (role === "organization") {
+      fetchUserEvents();
+    } else if (role === "student") {
+      fetchAllEvents();
+    }
+  }, [user, loading, role]);
+
+  useEffect(() => {
+    if (selectedEventId) {
+      fetchEventId();
+      // fetchRegistrationCount();
+    }
+  }, [selectedEventId]);
 
   return (
     <div>
@@ -116,7 +197,6 @@ const CreateEventForm = () => {
 
       {role === "organization" ? <OrgHolder /> : <Student />}
 
-      {/* Conditionally render Create Event form based on role */}
       {role === "organization" && (
         <div>
           <h2>Create Event</h2>
@@ -149,7 +229,6 @@ const CreateEventForm = () => {
         </div>
       )}
 
-      {/* Conditionally render Your Events based on role */}
       {role === "organization" && (
         <div>
           <h2>Your Events</h2>
@@ -158,6 +237,30 @@ const CreateEventForm = () => {
               <li key={userEvent.e_id}>{userEvent.title}</li>
             ))}
           </ul>
+        </div>
+      )}
+      {role === "student" && (
+        <div>
+          <h2>Student Events</h2>
+          <ul>
+            {userEvents.map((userEvent) => (
+              <li key={userEvent.e_id} onClick={() => handleEventClick(userEvent.e_id)}>
+                {userEvent.title}
+              </li>
+            ))}
+          </ul>
+
+          {selectedEventId && selectedEvent && (
+            <div>
+              <p>Selected Event ID: {selectedEventId}</p>
+              {/* <p>Registration Count: {registrationCount}</p> */}
+              <p>Title: {selectedEvent.title}</p>
+              <p>Date: {selectedEvent.date}</p>
+              {/* Add the registration button */}
+              <button onClick={handleRegister}>Register for Event</button>
+              <p>{message}</p>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -6,12 +6,15 @@ import uuid
 from datetime import datetime
 import requests
 from typing import List
+from fastapi.responses import JSONResponse
 
 conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="comm4unity_event"
+    host="35.199.165.211",
+    port=3306,  # Replace with your actual MySQL port if it's different
+    user="stephanie",
+    password="staniswinata10",
+    database="Comm4unity",
+    auth_plugin="mysql_native_password",
 )
 
 app = FastAPI()
@@ -22,6 +25,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+class Registration(BaseModel):
+    e_id: str
+    s_id:str
+
+registrations_db = []
 
 class Event(BaseModel):
     title: str
@@ -139,3 +148,54 @@ def read_event(e_id: str = Path(..., title="The UID of the event")):
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close() 
+from fastapi.responses import JSONResponse
+
+# @app.get("/event/{e_id}/registration_count", response_model=dict)
+# def get_registration_count_for_event(e_id: str):
+#     cursor = conn.cursor(dictionary=True)
+#     try:
+#         count_query = "SELECT COUNT(*) as registration_count FROM registration WHERE e_id = %s"
+#         cursor.execute(count_query, (e_id,))
+#         registration_count = cursor.fetchone()
+
+#         if not registration_count:
+#             registration_count = {"registration_count": 0}
+
+#         return registration_count
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"Error fetching registration count: {str(e)}")
+#     finally:
+#         cursor.close()
+
+
+@app.post("/registrations/{s_id}/{e_id}")
+def create_registration(e_id: str, s_id: str, reg: Registration):
+    reg_id = uuid.uuid4()
+
+    cursor = conn.cursor()
+    try:
+        # Check if the registration already exists for the given student and event
+        check_query = "SELECT r_id FROM registration WHERE e_id = %s AND s_id = %s"
+        cursor.execute(check_query, (e_id, s_id))
+        existing_registration = cursor.fetchone()
+
+        if existing_registration:
+            return JSONResponse(content={"Student has already registered for this event"}, status_code=400)
+
+        # If the registration does not exist, create a new registration
+        insert_query = (
+            "INSERT INTO registration (r_id, e_id, s_id) "
+            "VALUES (%s, %s, %s)"
+        )
+        reg_data = (str(reg_id), reg.e_id, s_id)
+        cursor.execute(insert_query, reg_data)
+        conn.commit()
+      
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating registration: {str(e)}")
+    finally:
+        cursor.close()
+
+    return {"message": "Registration created successfully"}
+
+
