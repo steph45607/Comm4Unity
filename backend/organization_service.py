@@ -134,8 +134,8 @@ def get_all_events():
 
 @app.get("/event/{e_id}")
 def read_event(e_id: str = Path(..., title="The UID of the event")):
+    cursor = conn.cursor()
     try:
-        cursor = conn.cursor(dictionary=True)
         query = "SELECT * FROM event WHERE e_id = %s"
         cursor.execute(query, (e_id,))
         user = cursor.fetchone()
@@ -148,6 +148,7 @@ def read_event(e_id: str = Path(..., title="The UID of the event")):
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close() 
+        
 from fastapi.responses import JSONResponse
 
 # @app.get("/event/{e_id}/registration_count", response_model=dict)

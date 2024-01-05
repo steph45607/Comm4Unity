@@ -73,6 +73,7 @@ const CreateEventForm = () => {
       }
 
       const oneEventResponse = await axios.get(`${url}/event/${selectedEventId}`);
+      console.log(oneEventResponse);
       setSelectedEvent(oneEventResponse.data);
       setReg({
         ...reg,
@@ -157,10 +158,11 @@ const CreateEventForm = () => {
     try {
       const response = await axios.post(`${url}/registrations/${user?.uid}/${selectedEventId}`, reg);
       console.log(response.data);
-      setMessage(`Successfully registered for the event: ${selectedEvent.title}`);
+      setMessage(`Successfully registered for the event: ${selectedEvent["1"]}`);
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(`Error registering for the event: ${JSON.stringify(error.response.data)}`);
+        // setMessage(`Error registering for the event: ${JSON.stringify(error.response.data)}`);
+        setMessage("Account already registered")
       } else {
         setMessage(`Error registering for the event: ${error.message}`);
       }
@@ -253,9 +255,11 @@ const CreateEventForm = () => {
           {selectedEventId && selectedEvent && (
             <div>
               <p>Selected Event ID: {selectedEventId}</p>
+              {console.log(selectedEvent.title)}
+              {console.log(selectedEvent)}
               {/* <p>Registration Count: {registrationCount}</p> */}
-              <p>Title: {selectedEvent.title}</p>
-              <p>Date: {selectedEvent.date}</p>
+              <p>Title: {selectedEvent["1"]}</p>
+              <p>Date: {selectedEvent["2"]}</p>
               {/* Add the registration button */}
               <button onClick={handleRegister}>Register for Event</button>
               <p>{message}</p>
