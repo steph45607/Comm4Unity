@@ -148,6 +148,36 @@ def read_event(e_id: str = Path(..., title="The UID of the event")):
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close() 
+
+@app.delete("/event/delete/{e_id}")
+def delete_event(e_id: str = Path(..., title="The UID of the event")):
+    cursor = conn.cursor()
+    try:
+        # Delete from the 'event' table
+        event_query = "DELETE FROM event WHERE e_id = %s"
+        cursor.execute(event_query, (e_id,))
+        conn.commit()
+
+        affected_rows_event = cursor.rowcount
+
+        if affected_rows_event == 0:
+            raise HTTPException(status_code=404, detail="Event not found")
+
+        # Delete from the 'registration' table
+        registration_query = "DELETE FROM registration WHERE e_id = %s"
+        cursor.execute(registration_query, (e_id,))
+        conn.commit()
+
+        affected_rows_registration = cursor.rowcount
+
+        if affected_rows_registration == 0:
+            raise HTTPException(status_code=404, detail="No registrations found for the event")
+
+        return {"message": "Event and associated registrations deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
         
 from fastapi.responses import JSONResponse
 
