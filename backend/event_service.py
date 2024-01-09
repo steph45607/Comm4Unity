@@ -71,7 +71,7 @@ def get_all_events():
 def read_event(e_id: str = Path(..., title="The UID of the event")):
     try:
         cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM event WHERE e_id = %s"
+        query = "SELECT * FROM event WHERE id = %s"
         cursor.execute(query, (e_id,))
         user = cursor.fetchone()
 
