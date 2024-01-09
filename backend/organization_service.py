@@ -14,7 +14,7 @@ conn = mysql.connector.connect(
     port=3306,  # Replace with your actual MySQL port if it's different
     user="stephanie",
     password="staniswinata10",
-    database="Comm4unity",
+    database="events",
     auth_plugin="mysql_native_password",
 )
 
@@ -41,11 +41,12 @@ class Event(BaseModel):
     location: str
     type: str
     description: str
-    link: str
-    o_id: str #organisasinya
+    rlink: str
+    ilink: str
+    org_id: str #organisasinya
 
-@app.post("/event/create_event/{o_id}")
-def create_event(o_id: str, event: Event):
+@app.post("/event/create_event/{org_id}")
+def create_event(org_id: str, event: Event):
     # Generate a new UUID for the event id
     event_id = uuid.uuid4()
 
@@ -57,11 +58,11 @@ def create_event(o_id: str, event: Event):
         #     raise HTTPException(status_code=404, detail="Organization not found")
 
         query = (
-            "INSERT INTO event (e_id, title, date, start_time, end_time, location, type, description, link, o_id) "
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            "INSERT INTO event (id, title, date, start_time, end_time, location, type, description, regist_link, image_link, org_id) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         )
         event_data = (str(event_id), event.title, event.date, event.start_time, event.end_time,
-                      event.location, event.type, event.description, event.link, event.o_id)
+                      event.location, event.type, event.description, event.rlink, event.ilink, event.org_id)
         cursor.execute(query, event_data)
         conn.commit()
       
@@ -88,35 +89,6 @@ def get_user_events(user_uid: str):
     finally:
         cursor.close()
 
-
-# @app.post("/event/create_event")
-# def create_event(event: Event):
-#     # Generate a new UUID for the event id
-#     event_id = uuid.uuid4()
-
-#     cursor = conn.cursor()
-#     try:
-#         # Check if the organization exists
-#         event_response = requests.get(f"http://localhost:8001/organization/{event.o_id}")
-#         if event_response.status_code != 200:
-#             raise HTTPException(status_code=404, detail="Organization not found")
-
-#         query = (
-#             "INSERT INTO event (e_id, title, date, start_time, end_time, location, type, description, link, o_id) "
-#             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-#         )
-#         event_data = (str(event_id), event.title, event.date, event.start_time, event.end_time,
-#                       event.location, event.type, event.description, event.link, event.o_id)
-#         cursor.execute(query, event_data)
-#         conn.commit()
-      
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error creating registration: {str(e)}")
-#     finally:
-#         cursor.close()
-
-#     return {"message": "Event created successfully"}
-
 @app.get("/event/get_all_events")
 def get_all_events():
     cursor = conn.cursor(dictionary=True)
@@ -129,9 +101,6 @@ def get_all_events():
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         cursor.close()
-
-
-
 
 @app.get("/event/{e_id}")
 def read_event(e_id: str = Path(..., title="The UID of the event")):
@@ -182,24 +151,6 @@ def delete_event(e_id: str = Path(..., title="The UID of the event")):
         
 from fastapi.responses import JSONResponse
 
-# @app.get("/event/{e_id}/registration_count", response_model=dict)
-# def get_registration_count_for_event(e_id: str):
-#     cursor = conn.cursor(dictionary=True)
-#     try:
-#         count_query = "SELECT COUNT(*) as registration_count FROM registration WHERE e_id = %s"
-#         cursor.execute(count_query, (e_id,))
-#         registration_count = cursor.fetchone()
-
-#         if not registration_count:
-#             registration_count = {"registration_count": 0}
-
-#         return registration_count
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error fetching registration count: {str(e)}")
-#     finally:
-#         cursor.close()
-
-
 @app.post("/registrations/{s_id}/{e_id}")
 def create_registration(e_id: str, s_id: str, reg: Registration):
     reg_id = uuid.uuid4()
@@ -229,5 +180,3 @@ def create_registration(e_id: str, s_id: str, reg: Registration):
         cursor.close()
 
     return {"message": "Registration created successfully"}
-
-
