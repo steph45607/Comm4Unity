@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Navbar from "./navbar";
-import Student from "./StudentPage";
+import StudentPage from "./StudentPage";
 import OrgHolder from "./OrgHolder";
 import axios from "axios";
-import StudentProfile from "./StudentProfile";
 
 const CreateEventForm = () => {
   const [event, setEvent] = useState({
@@ -140,7 +139,7 @@ const CreateEventForm = () => {
       <p className="details">Role: {role}</p>
       <button onClick={logout}>Logout</button> */}
 
-      {role === "organization" ? <OrgHolder /> : <StudentProfile />}
+      {role === "organization" ? <OrgHolder /> : <StudentPage />}
 
     
     </div>

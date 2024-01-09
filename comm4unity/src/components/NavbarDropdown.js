@@ -85,7 +85,7 @@ function Navdropdown() {
                                 </Link>
                         }
                     </div>
-                    <li className='logout'>
+                    <li className='logout' onClick={logout}>
                         <button onClick={logout} className='logoutbtn'>Logout</button>
                     </li>
                 </div>

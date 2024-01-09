@@ -7,8 +7,9 @@ function EventBtn({ title, reward, date, poster }) {
     <img class="poster" src={poster}></img>
     <div class="textBox" style={{ textDecoration: "none", color: "" }}>
         <p class="text head">{title}</p>
+        <br/>
         <p class="text org">{date}</p>
-        <br></br>
+        <br/>
         <p class="text reward">{reward}</p>
     </div>
   </div>

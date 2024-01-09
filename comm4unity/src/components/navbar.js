@@ -29,7 +29,7 @@ function Navbar() {
               <h2 className="navbar-top">Comm4Unity</h2>
           </Link>
         </div>
-        <div className="top">
+        <div className="navtop">
           <ul className='ultext'>
             <li
                 className='nav-item'

@@ -7,7 +7,7 @@ import { organization_url } from "./CONST";
 import Navbar from "./navbar";
 import EventBtn from "./event-btn";
 import { Link } from "react-router-dom";
-import '../styles/orgevent.css';
+import "../styles/orgevent.css";
 
 function OrgProfile() {
   const [user, loading] = useAuthState(auth);

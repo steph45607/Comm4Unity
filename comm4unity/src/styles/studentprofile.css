@@ -1,0 +1,37 @@
+.profile-container{
+    display: flex;
+    border: solid 3px rgb(255, 255, 255);
+    margin:100px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-left{
+    display:flex;
+    justify-content: center;
+    flex-basis:40%;
+    flex-direction: column;
+    align-items: center;
+    margin-top:50px;
+    margin: 50px;
+}
+
+.profile-right{
+    display:flex;
+    flex-basis:60%;
+    background-color: #343a47 ;
+    padding: 200px 200px 200px 100px;
+    flex-direction: column;
+    border-radius: 0 20px 20px 0;
+}
+
+.profile-img{
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.profile-text{
+    margin:1em;
+    font-size: 30px;
+}

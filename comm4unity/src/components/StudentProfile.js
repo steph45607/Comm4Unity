@@ -6,6 +6,8 @@ import axios from "axios";
 import { event_url, student_url } from "./CONST";
 import { Link } from "react-router-dom";
 import EventBtn from "./event-btn";
+import "../styles/studentprofile.css";
+import Navbar from "./navbar";
 
 function StudentProfile() {
   const [user, loading] = useAuthState(auth);
@@ -81,28 +83,18 @@ function StudentProfile() {
 
   return (
     <div>
-      <h1>{name}</h1>
-      {/* <h2>SAT: {student}</h2> */}
-      <h3>SAT: {student.sat}</h3>
-      <h3>ComServ: {student.comserv}</h3>
-      <h3>Available Events:</h3>
-      <div className="events-row"></div>
-      <p>
-        <div className="event-row">
-        {events.map((event) => {
-          return (
-            <Link to={`/event/${event.id}`} style={{ textDecoration: "none" }}>
-              <EventBtn
-                title={event.title}
-                date={event.date}
-                reward={event.type}
-                poster={event.image_link}
-              />
-            </Link>
-          );
-        })}
+      <Navbar/>
+      <div className="profile-container">
+        <div className="profile-left">
+          <img className="profile-img" src="https://media.licdn.com/dms/image/D5603AQH48sjZa5r_1w/profile-displayphoto-shrink_800_800/0/1699263416440?e=2147483647&v=beta&t=VLbUR0VlZRni1sCE-cZIU0BsglxY46Q49nQZl2nNET4"/>         
+          <h1 className="navbar-top">{name}</h1>
         </div>
-      </p>
+        <div className="profile-right">
+          <h3 className="profile-text">Email: {user?.email}</h3>
+          <h3 className="profile-text">SAT: {student.sat}</h3>
+          <h3 className="profile-text">ComServ: {student.comserv}</h3>
+        </div>
+      </div>      
     </div>
   );
 }

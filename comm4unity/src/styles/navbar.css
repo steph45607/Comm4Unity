@@ -15,7 +15,7 @@ img {
     align-items: center;
 }
 
-.top{
+.navtop{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,4 +53,8 @@ img {
     display: flex;
     align-items: center;
     height: 80px;
-  }
+}
+
+.main{
+    border-bottom:solid 5px rgb(255, 255, 255);
+}

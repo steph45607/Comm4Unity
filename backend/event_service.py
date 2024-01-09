@@ -63,8 +63,6 @@ def get_all_events():
         # return events
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    finally:
-        cursor.close()
 
 
 @app.get("/event/{e_id}")
@@ -81,5 +79,4 @@ def read_event(e_id: str = Path(..., title="The UID of the event")):
         return user
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    finally:
-        cursor.close() 
+
