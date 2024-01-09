@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Reset from "./components/Reset";
 import Dashboard from "./components/Dashboard";
+import OrgProfile from "./components/OrgProfile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/organization" element={<Organization />} />
         <Route exact path="/student" element={<Student />} />
         <Route exact path="/event/:id" element={<Event />} />
+        <Route exact path="/organization/profile" element={<OrgProfile />} />
       </Routes>
     </Router>
   );

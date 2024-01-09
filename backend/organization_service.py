@@ -78,7 +78,7 @@ def get_user_events(user_uid: str):
     cursor = conn.cursor(dictionary=True)
     try:
         query = (
-            "SELECT title, date, start_time, end_time, location, type, description, link, o_id "
+            "SELECT title, date, start_time, end_time, location, type, description, ilink, org_id "
             "FROM event WHERE o_id = %s"
         )
         cursor.execute(query, (user_uid,))
