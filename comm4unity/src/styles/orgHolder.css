@@ -2,6 +2,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    padding-bottom:50px;
 }
 
 .message-popup{
@@ -35,8 +36,15 @@
     margin-top:45px;
 }
 
+input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
 textarea{
     max-width: 400px;
+    min-height: 20px;
+    resize: vertical;
+    overflow: hidden;
 }
 
 .inputform:focus {

@@ -9,6 +9,7 @@ import "../styles/orgHolder.css";
 // import events from "../assets/events.js"
 // import { Link } from "react-router-dom";
 import { backend_url } from "./CONST";
+import autosize from 'autosize';
 
 function OrgHolder() {
   // const backend_url = "http://127.0.0.1:8000";
@@ -26,6 +27,8 @@ function OrgHolder() {
   const [description, setDescription] = useState("");
   const [rlink, setRlink] = useState("");
   const [ilink, setIlink] = useState("");
+
+  autosize(document.querySelectorAll('textarea'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +84,7 @@ function OrgHolder() {
   };
   return (
     <div>
-      <p>{user?.uid}</p>
+      {/* <p>{user?.uid}</p> */}
       <form onSubmit={handleSubmit} className="orgform">
         <div className="orgform-content">
           <h2 className="formtitle">Organization Form</h2>
