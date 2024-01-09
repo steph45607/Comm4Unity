@@ -73,17 +73,33 @@ def create_event(org_id: str, event: Event):
 
     return {"message": "Event created successfully"}
 
-@app.get("/events/get_events/{user_uid}", response_model=List[Event])
+@app.get("/events/get_events/{user_uid}")
 def get_user_events(user_uid: str):
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
     try:
         query = (
-            "SELECT title, date, start_time, end_time, location, type, description, ilink, org_id "
-            "FROM event WHERE o_id = %s"
+            "SELECT * FROM event WHERE org_id = %s"
         )
         cursor.execute(query, (user_uid,))
         user_events = cursor.fetchall()
-        return user_events
+        events_details = []
+        # if len(events_details) > 0:
+        for event in user_events:
+            id, date, start, end, location, reward, description, rlink, ilink, org_id, title = event
+            events_details.append({
+                "id": id, 
+                "title":title, 
+                "date":date,
+                "start_time": start,
+                "end_time": end,
+                "location": location,
+                "type": reward,
+                "description": description,
+                "regist_link":rlink,
+                "image_link":ilink,
+                "org_id": org_id,
+            })
+        return events_details
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching user events: {str(e)}")
     finally:

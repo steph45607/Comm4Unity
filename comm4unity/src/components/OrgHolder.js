@@ -8,9 +8,10 @@ import "../styles/orgHolder.css";
 // import EventBtn from "./event-btn";
 // import events from "../assets/events.js"
 // import { Link } from "react-router-dom";
+import { backend_url } from "./CONST";
 
 function OrgHolder() {
-  const backend_url = "http://127.0.0.1:8000";
+  // const backend_url = "http://127.0.0.1:8000";
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -55,29 +56,6 @@ function OrgHolder() {
         console.log(error);
         console.log(event);
       });
-
-    // try {
-    //   const response = await fetch(
-    //     `${backend_url}/event/create_event/${event.o_id}`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(data),
-    //     }
-    //   );
-
-    //   const data = await response.json();
-
-    //   if (response.ok) {
-    //     setMessage(data.message);
-    //   } else {
-    //     setMessage(`Error: ${data.detail}`);
-    //   }
-    // } catch (error) {
-    //   setMessage(`Error: ${error.message}`);
-    // }
   };
 
   const fetchUserName = async () => {
