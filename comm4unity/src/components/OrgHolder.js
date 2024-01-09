@@ -8,7 +8,7 @@ import "../styles/orgHolder.css";
 // import EventBtn from "./event-btn";
 // import events from "../assets/events.js"
 // import { Link } from "react-router-dom";
-import { backend_url } from "./CONST";
+import { organization_url } from "./CONST";
 import autosize from 'autosize';
 
 function OrgHolder() {
@@ -47,7 +47,7 @@ function OrgHolder() {
     };
     // console.log("here");
     axios
-      .post(`${backend_url}/event/create_event/${event.org_id}`, event, {
+      .post(`${organization_url}/event/create_event/${event.org_id}`, event, {
         headers: {
           "Content-Type": "application/json",
         },
