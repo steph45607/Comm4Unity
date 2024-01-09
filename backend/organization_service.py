@@ -56,14 +56,16 @@ def create_event(org_id: str, event: Event):
         # event_response = requests.get(f"http://localhost:8001/organization/{o_id}")
         # if event_response.status_code != 200:
         #     raise HTTPException(status_code=404, detail="Organization not found")
-
+        print("here")
         query = (
             "INSERT INTO event (id, title, date, start_time, end_time, location, type, description, regist_link, image_link, org_id) "
             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         )
+        print("there")
         event_data = (str(event_id), event.title, event.date, event.start_time, event.end_time,
                       event.location, event.type, event.description, event.rlink, event.ilink, event.org_id)
         cursor.execute(query, event_data)
+        print("")
         conn.commit()
       
     except Exception as e:
