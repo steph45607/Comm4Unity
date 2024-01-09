@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import axios from "axios";
-import { backend_url } from "./CONST";
+import { organization_url } from "./CONST";
 
 function OrgProfile() {
   const [user, loading] = useAuthState(auth);
@@ -20,7 +20,7 @@ function OrgProfile() {
       }
 
       const userEventsResponse = await axios.get(
-        `${backend_url}/events/get_events/${userUid}`
+        `${organization_url}/events/get_events/${userUid}`
       );
       console.log(userEventsResponse);
       setEvents(userEventsResponse.data);
