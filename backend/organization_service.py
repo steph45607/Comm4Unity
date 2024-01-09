@@ -8,6 +8,7 @@ import requests
 from typing import List
 from fastapi.responses import JSONResponse
 
+
 conn = mysql.connector.connect(
     host="35.199.165.211",
     port=3306,  # Replace with your actual MySQL port if it's different

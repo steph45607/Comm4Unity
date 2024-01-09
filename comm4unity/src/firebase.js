@@ -80,9 +80,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
-      role: "student"
+      role: "student",
     });
-    alert(user)
+    alert(user);
   } catch (err) {
     console.log(err);
     alert(err.message);

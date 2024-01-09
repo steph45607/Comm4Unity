@@ -23,10 +23,10 @@ const CreateEventForm = () => {
 
   const [reg, setReg] = useState({
     e_id: "",
-    s_id: ""
-  })
+    s_id: "",
+  });
 
-  const url = 'http://127.0.0.1:8000';
+  const url = "http://127.0.0.1:8000";
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -36,21 +36,6 @@ const CreateEventForm = () => {
   const [userEvents, setUserEvents] = useState([]);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  // const [registrationCount, setRegistrationCount] = useState(null);
-
-  // const fetchRegistrationCount = async () => {
-  //   try {
-  //     if (!selectedEventId) {
-  //       console.error("No selected event ID");
-  //       return;
-  //     }
-
-  //     const registrationCountResponse = await axios.get(`${url}/event/${selectedEventId}/registration_count`);
-  //     setRegistrationCount(registrationCountResponse.data.registration_count);
-  //   } catch (error) {
-  //     console.error("Error fetching registration count:", error.message);
-  //   }
-  // };
 
   const fetchAllEvents = async () => {
     try {
@@ -72,13 +57,15 @@ const CreateEventForm = () => {
         return;
       }
 
-      const oneEventResponse = await axios.get(`${url}/event/${selectedEventId}`);
+      const oneEventResponse = await axios.get(
+        `${url}/event/${selectedEventId}`
+      );
       console.log(oneEventResponse);
       setSelectedEvent(oneEventResponse.data);
       setReg({
         ...reg,
         e_id: selectedEventId,
-        s_id: user?.uid
+        s_id: user?.uid,
       });
     } catch (error) {
       console.error("Error fetching event details:", error.message);
@@ -93,7 +80,9 @@ const CreateEventForm = () => {
         return;
       }
 
-      const userEventsResponse = await axios.get(`${url}/events/get_events/${userUid}`);
+      const userEventsResponse = await axios.get(
+        `${url}/events/get_events/${userUid}`
+      );
       setUserEvents(userEventsResponse.data);
     } catch (error) {
       console.error("Error fetching user events:", error.message);
@@ -156,19 +145,23 @@ const CreateEventForm = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post(`${url}/registrations/${user?.uid}/${selectedEventId}`, reg);
+      const response = await axios.post(
+        `${url}/registrations/${user?.uid}/${selectedEventId}`,
+        reg
+      );
       console.log(response.data);
-      setMessage(`Successfully registered for the event: ${selectedEvent["1"]}`);
+      setMessage(
+        `Successfully registered for the event: ${selectedEvent["1"]}`
+      );
     } catch (error) {
       if (error.response && error.response.data) {
         // setMessage(`Error registering for the event: ${JSON.stringify(error.response.data)}`);
-        setMessage("Account already registered")
+        setMessage("Account already registered");
       } else {
         setMessage(`Error registering for the event: ${error.message}`);
       }
     }
   };
-
 
   useEffect(() => {
     if (loading) return;
@@ -199,7 +192,7 @@ const CreateEventForm = () => {
 
       {role === "organization" ? <OrgHolder /> : <Student />}
 
-      {role === "organization" && (
+      {/* {role === "organization" && (
         <div>
           <h2>Create Event</h2>
           <button onClick={() => setShowEventDetails(!showEventDetails)}>
@@ -229,9 +222,9 @@ const CreateEventForm = () => {
           )}
           {message && <p>{message}</p>}
         </div>
-      )}
+      )} */}
 
-      {role === "organization" && (
+      {/* {role === "organization" && (
         <div>
           <h2>Your Events</h2>
           <ul>
@@ -240,8 +233,8 @@ const CreateEventForm = () => {
             ))}
           </ul>
         </div>
-      )}
-      {role === "student" && (
+      )} */}
+      {/* {role === "student" && (
         <div>
           <h2>Student Events</h2>
           <ul>
@@ -257,16 +250,17 @@ const CreateEventForm = () => {
               <p>Selected Event ID: {selectedEventId}</p>
               {console.log(selectedEvent.title)}
               {console.log(selectedEvent)}
-              {/* <p>Registration Count: {registrationCount}</p> */}
+              <p>Registration Count: {registrationCount}</p>
               <p>Title: {selectedEvent["1"]}</p>
               <p>Date: {selectedEvent["2"]}</p>
-              {/* Add the registration button */}
+              Add the registration button
               <button onClick={handleRegister}>Register for Event</button>
               <p>{message}</p>
             </div>
           )}
         </div>
-      )}
+      )
+      } */}
     </div>
   );
 };
