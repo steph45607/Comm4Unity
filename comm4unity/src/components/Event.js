@@ -44,7 +44,7 @@ const Event = () => {
         <div className="event-left">
           <img className="event-image" src={event.image_link} alt=""></img>
           <p className="eventp">
-            {event.date} | {event.start}
+            {event.date} | {event.start_time} - {event.end_time}
           </p>
           <p className="eventp">Location: {event.location}</p>
           <div className="event-btn">
