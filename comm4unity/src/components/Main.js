@@ -47,10 +47,6 @@ const CreateEventForm = () => {
     }
   };
 
-  const handleEventClick = (eventId) => {
-    setSelectedEventId(eventId);
-  };
-
   const fetchEventId = async () => {
     try {
       if (!selectedEventId) {
@@ -90,35 +86,6 @@ const CreateEventForm = () => {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEvent({ ...event, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`${url}/event/create_event/${event.o_id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(event),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.message);
-      } else {
-        setMessage(`Error: ${data.detail}`);
-      }
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
-  };
-
   const fetchUserName = async () => {
     try {
       const userUid = user?.uid;
@@ -144,124 +111,38 @@ const CreateEventForm = () => {
     }
   };
 
-  const handleRegister = async () => {
-    try {
-      const response = await axios.post(
-        `${url}/registrations/${user?.uid}/${selectedEventId}`,
-        reg
-      );
-      console.log(response.data);
-      setMessage(
-        `Successfully registered for the event: ${selectedEvent["1"]}`
-      );
-    } catch (error) {
-      if (error.response && error.response.data) {
-        // setMessage(`Error registering for the event: ${JSON.stringify(error.response.data)}`);
-        setMessage("Account already registered");
-      } else {
-        setMessage(`Error registering for the event: ${error.message}`);
-      }
-    }
-  };
+
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-    if (role === "organization") {
-      fetchUserEvents();
-    } else if (role === "student") {
-      fetchAllEvents();
-    }
+    // if (role === "organization") {
+    //   fetchUserEvents();
+    // } else if (role === "student") {
+    //   fetchAllEvents();
+    // }
   }, [user, loading, role]);
 
-  useEffect(() => {
-    if (selectedEventId) {
-      fetchEventId();
-      // fetchRegistrationCount();
-    }
-  }, [selectedEventId]);
+  // useEffect(() => {
+  //   if (selectedEventId) {
+  //     fetchEventId();
+  //     // fetchRegistrationCount();
+  //   }
+  // }, [selectedEventId]);
 
   return (
     <div>
       <Navbar />
-      <p className="details">Uid: {user?.uid}</p>
+      {/* <p className="details">Uid: {user?.uid}</p>
       <p className="details">Name: {name}</p>
       <p className="details">Email: {user?.email}</p>
       <p className="details">Role: {role}</p>
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout}>Logout</button> */}
 
       {role === "organization" ? <OrgHolder /> : <StudentProfile />}
 
-      {/* {role === "organization" && (
-        <div>
-          <h2>Create Event</h2>
-          <button onClick={() => setShowEventDetails(!showEventDetails)}>
-            {showEventDetails ? "Hide Event Details" : "Show Event Details"}
-          </button>
-          {showEventDetails && (
-            <form onSubmit={handleSubmit}>
-              {Object.keys(event).map(
-                (key) =>
-                  key !== "o_id" && (
-                    <div key={key}>
-                      <label>
-                        {key.charAt(0).toUpperCase() + key.slice(1)}:
-                        <input
-                          type="text"
-                          name={key}
-                          value={event[key]}
-                          onChange={handleInputChange}
-                        />
-                      </label>
-                      <br />
-                    </div>
-                  )
-              )}
-              <button type="submit">Create Event</button>
-            </form>
-          )}
-          {message && <p>{message}</p>}
-        </div>
-      )} */}
-
-      {/* {role === "organization" && (
-        <div>
-          <h2>Your Events</h2>
-          <ul>
-            {userEvents.map((userEvent) => (
-              <li key={userEvent.e_id}>{userEvent.title}</li>
-            ))}
-          </ul>
-        </div>
-      )} */}
-      {/* {role === "student" && (
-        <div>
-          <h2>Student Events</h2>
-          <ul>
-            {userEvents.map((userEvent) => (
-              <li key={userEvent.e_id} onClick={() => handleEventClick(userEvent.e_id)}>
-                {userEvent.title}
-              </li>
-            ))}
-          </ul>
-
-          {selectedEventId && selectedEvent && (
-            <div>
-              <p>Selected Event ID: {selectedEventId}</p>
-              {console.log(selectedEvent.title)}
-              {console.log(selectedEvent)}
-              <p>Registration Count: {registrationCount}</p>
-              <p>Title: {selectedEvent["1"]}</p>
-              <p>Date: {selectedEvent["2"]}</p>
-              Add the registration button
-              <button onClick={handleRegister}>Register for Event</button>
-              <p>{message}</p>
-            </div>
-          )}
-        </div>
-      )
-      } */}
+    
     </div>
   );
 };
