@@ -39,7 +39,7 @@ class Event(BaseModel):
 def get_all_events():
     cursor = conn.cursor(dictionary=True)
     try:
-        query = "SELECT * FROM event"
+        query = "SELECT * FROM event_table"
         cursor.execute(query)
         events = cursor.fetchall()
         events_details = []
@@ -69,7 +69,7 @@ def get_all_events():
 def read_event(e_id: str = Path(..., title="The UID of the event")):
     try:
         cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM event WHERE id = %s"
+        query = "SELECT * FROM event_table WHERE id = %s"
         cursor.execute(query, (e_id,))
         user = cursor.fetchone()
 
