@@ -14,6 +14,7 @@ conn = mysql.connector.connect(
     auth_plugin="mysql_native_password",
 )
 
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -25,8 +26,8 @@ app.add_middleware(
 
 @app.get("/student/{s_id}")
 def read_student(s_id: str):
+    cursor = conn.cursor(dictionary=True)
     try:
-        cursor = conn.cursor(dictionary=True)
         query = "SELECT * FROM Students WHERE id = %s"
         cursor.execute(query, (s_id,))
         user = cursor.fetchone()
