@@ -7,6 +7,7 @@ import Navbar from "./navbar";
 import Student from "./StudentPage";
 import OrgHolder from "./OrgHolder";
 import axios from "axios";
+import StudentProfile from "./StudentProfile";
 
 const CreateEventForm = () => {
   const [event, setEvent] = useState({
@@ -190,7 +191,7 @@ const CreateEventForm = () => {
       <p className="details">Role: {role}</p>
       <button onClick={logout}>Logout</button>
 
-      {role === "organization" ? <OrgHolder /> : <Student />}
+      {role === "organization" ? <OrgHolder /> : <StudentProfile />}
 
       {/* {role === "organization" && (
         <div>

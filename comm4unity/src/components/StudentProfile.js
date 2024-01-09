@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import axios from "axios";
-import { backend_url } from "./CONST";
+import { event_url } from "./CONST";
 
 function StudentProfile() {
   const [user, loading] = useAuthState(auth);
@@ -19,13 +19,13 @@ function StudentProfile() {
         return;
       }
 
-      const userEventsResponse = await axios.get(
-        `${backend_url}/events/get_events/${userUid}`
+      const allEvents = await axios.get(
+        `${event_url}/event/get_all_events`
       );
-      console.log(userEventsResponse);
-      setEvents(userEventsResponse.data);
+      console.log(allEvents);
+      setEvents(allEvents.data);
     } catch (error) {
-      console.error("Error fetching user events:", error.message);
+      console.error("Error fetching events:", error.message);
     }
   };
 
@@ -58,7 +58,7 @@ function StudentProfile() {
   return (
     <div>
       <h1>{name}</h1>
-      <h3>Your Events:</h3>
+      <h3>Available Events:</h3>
       <div className="events-row"></div>
       <p>
         {events.map((event) => (
