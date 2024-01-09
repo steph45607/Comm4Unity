@@ -8,5 +8,8 @@ ENV PYTHONUNBUFFERED True
 COPY . ./
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt 
+
+EXPOSE 8000
+
 # Run
 CMD ["uvicorn", "organization_service:app", "--host", "0.0.0.0"]
