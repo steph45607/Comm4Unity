@@ -4,10 +4,10 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED True
 # Copy local code to the container image.
 # ENV APP_HOME /app
-# WORKDIR $APP_HOME
+WORKDIR /app
+COPY backend/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . ./backend
-# Install production dependencies.
-RUN pip install --no-cache-dir -r ./backend/requirements.txt 
 
 EXPOSE 8000
 
