@@ -71,19 +71,24 @@ function Navdropdown() {
                 onClick={handleClick}
                 className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}
             >
-                <div className="dropdownname">
-                    {lloading ? (
-                        <p className='dropdowntext'>Loading...</p>
-                    ) : (
-                        <>
-                            <p className='dropdowntext'>Logged in as:</p>
-                            <p className='displayname'>{name}</p>
-                        </>
-                    )}
+                <div className='dropdown-container'>
+                    <div className="dropdownname">
+                        { role === "organization" ? 
+                                <Link to={"/organization/profile"} style={{textDecoration:'none', color:'black'}}>
+                                    <p className='dropdowntext'>Logged in as:</p>
+                                    <p className='displayname'>{name}</p>
+                                </Link>
+                             : 
+                                <Link to={"/student/profile"} style={{textDecoration:'none', color:'black'}}>
+                                    <p className='dropdowntext'>Logged in as:</p>
+                                    <p className='displayname'>{name}</p>
+                                </Link>
+                        }
+                    </div>
+                    <li className='logout'>
+                        <button onClick={logout} className='logoutbtn'>Logout</button>
+                    </li>
                 </div>
-                <li className='logout'>
-                    <button onClick={logout} className='logoutbtn'>Logout</button>
-                </li>
             </ul>
         </>
     );

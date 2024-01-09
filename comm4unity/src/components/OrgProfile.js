@@ -4,6 +4,10 @@ import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import axios from "axios";
 import { organization_url } from "./CONST";
+import Navbar from "./navbar";
+import EventBtn from "./event-btn";
+import { Link } from "react-router-dom";
+import '../styles/orgevent.css';
 
 function OrgProfile() {
   const [user, loading] = useAuthState(auth);
@@ -53,16 +57,27 @@ function OrgProfile() {
     if (loading) return;
     fetchUserName();
     fetchUserEvents();
-  });
+  }, [loading]);
 
   return (
     <div>
-      <h1>{name}</h1>
-      <h3>Your Events:</h3>
-      <div className="events-row"></div>
-      <p>{events.map(event =>(
-        <div>{event.title}</div>
-      ))}</p>
+      <Navbar/>
+      <h1 className="navbar-top">{name}</h1>
+      <h3 className="navbar-top">Your Events:</h3>
+      <div className="event-row">
+        {events.map((event) => {
+          return (
+            <Link to={`/event/${(event.id)}`} style={{ textDecoration: "none" }}>
+              <EventBtn
+                title={event.title}
+                org={event.org}
+                reward={event.type}
+                poster= {event.image_link}
+              />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,8 +1,12 @@
+.dropdown-container{
+    padding:10px;
+}
+
 .dropdown-menu {
     list-style: none;
     align-items: flex-end;
     position: fixed;
-    right: 1.8%;
+    right: 4%;
     left: auto;
     max-width: 100%;
     padding:10px;
@@ -32,11 +36,18 @@
 
 .dropdownname {
     color: black;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
 }
 
 .dropdowntext{
     font-size:14px;
     font-weight: bold;
+}
+
+.dropdownname:hover{
+    background: rgb(131, 131, 131);
 }
 
 .logoutbtn{

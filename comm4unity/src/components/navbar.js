@@ -4,7 +4,7 @@ import picture from "../assets/picture.jpg";
 import { Link } from "react-router-dom";
 import Navdropdown from "./NavbarDropdown";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-// import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
+import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
 import { useOnHoverOutside } from "./../hooks/Hover";
 
 function Navbar() {
@@ -36,7 +36,7 @@ function Navbar() {
             >
                 <div className='profile_bar' ref={dropdownRef} class="">
                     <p className='profile' onMouseOver={() => setMenuDropDownOpen(true)}>
-                        coba
+                      <FontAwesomeIcon icon={faCircleUser} size='3x'color='white'/>
                     </p>
                     {isMenuDropDownOpen && <Navdropdown />}
                 </div>

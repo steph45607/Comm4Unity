@@ -77,7 +77,7 @@ function StudentProfile() {
     fetchUserName();
     fetchUserEvents();
     fetchStudentData();
-  });
+  }, [loading]);
 
   return (
     <div>
