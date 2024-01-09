@@ -51,10 +51,12 @@ function OrgHolder() {
       })
       .then((response) => {
         console.log(response);
+        alert("Submitted! Check your profile!")
       })
       .catch((error) => {
         console.log(error);
         console.log(event);
+        alert("Error, please contact admin.")
       });
   };
 
@@ -193,7 +195,7 @@ function OrgHolder() {
             <span class="bar"></span>
             <label className="labelform">Image Link</label>
           </div>
-
+          <p className="message-popup">Please wait until pop up message appears</p>
           <button
             type="submit"
             className="formbtn"
@@ -218,7 +220,6 @@ function OrgHolder() {
           {/* <button type="submit">Submit</button> */}
         </div>
       </form>
-      <p>{message}</p>
     </div>
   );
 }

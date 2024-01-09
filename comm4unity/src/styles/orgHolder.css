@@ -4,6 +4,9 @@
     align-items: center;
 }
 
+.message-popup{
+    color: black;
+}
 
 .orgform-content{
     padding:20px 20px 20px 20px;
