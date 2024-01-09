@@ -3,9 +3,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import axios from "axios";
+import "../styles/orgHolder.css";
 // import Navbar from "./navbar";
 // import EventBtn from "./event-btn";
-// import "../styles/student.css";
 // import events from "../assets/events.js"
 // import { Link } from "react-router-dom";
 
@@ -23,19 +23,8 @@ function OrgHolder() {
   const [location, setLocation] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
-  const [link, setLink] = useState("");
-
-  const [event, setEvent] = useState({
-    title: "",
-    date: "",
-    start_time: "",
-    end_time: "",
-    location: "",
-    type: "",
-    description: "",
-    link: "",
-    o_id: "",
-  });
+  const [rlink, setRlink] = useState("");
+  const [ilink, setIlink] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,12 +37,13 @@ function OrgHolder() {
       location: location,
       type: type,
       description: description,
-      link: link,
-      o_id: user?.uid,
+      rlink: rlink,
+      ilink: ilink,
+      org_id: user?.uid,
     };
-    console.log("here");
+    // console.log("here");
     axios
-      .post(`${backend_url}/event/create_event/${event.o_id}`, event, {
+      .post(`${backend_url}/event/create_event/${event.org_id}`, event, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -112,51 +102,143 @@ function OrgHolder() {
   return (
     <div>
       <p>{user?.uid}</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <input
-          placeholder="date"
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        ></input>
-        <input
-          placeholder="start time"
-          type="time"
-          value={start}
-          onChange={(e) => setStart(e.target.value)}
-        ></input>
-        <input
-          placeholder="end time"
-          type="time"
-          value={end}
-          onChange={(e) => setEnd(e.target.value)}
-        ></input>
-        <input
-          placeholder="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        ></input>
-        <input
-          placeholder="SAT/Comserv"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        ></input>
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <input
-          placeholder="Link"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-        ></input>
-        <button type="submit">Submit</button>
+      <form onSubmit={handleSubmit} className="orgform">
+        <div className="orgform-content">
+          <h2 className="formtitle">Organization Form</h2>
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">Title</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelformstatic">Date</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              type="time"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelformstatic">Start Time</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              type="time"
+              value={end}
+              onChange={(e) => setEnd(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelformstatic">End Time</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">Location</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">SAT / Comserv</label>
+          </div>
+
+          <div class="group">
+            <textarea
+              className="inputform"
+              required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">Description</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              value={rlink}
+              onChange={(e) => setRlink(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">Registration Link</label>
+          </div>
+
+          <div class="group">
+            <input
+              className="inputform"
+              required
+              value={ilink}
+              onChange={(e) => setIlink(e.target.value)}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label className="labelform">Image Link</label>
+          </div>
+
+          <button
+            type="submit"
+            className="formbtn"
+          >
+            <p className="btntext">Submit</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </button>
+
+          {/* <button type="submit">Submit</button> */}
+        </div>
       </form>
       <p>{message}</p>
     </div>

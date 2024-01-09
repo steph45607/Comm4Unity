@@ -1,8 +1,11 @@
+.homedirect{
+    width:fit-content;
+}
+
 img {
     width: 100%;
 }
 
 .navbar-top {
     margin: 1em;
-    
 }

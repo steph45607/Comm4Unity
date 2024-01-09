@@ -184,10 +184,10 @@ const CreateEventForm = () => {
   return (
     <div>
       <Navbar />
-      <p>Uid: {user?.uid}</p>
-      <p>Name: {name}</p>
-      <p>Email: {user?.email}</p>
-      <p>Role: {role}</p>
+      <p className="details">Uid: {user?.uid}</p>
+      <p className="details">Name: {name}</p>
+      <p className="details">Email: {user?.email}</p>
+      <p className="details">Role: {role}</p>
       <button onClick={logout}>Logout</button>
 
       {role === "organization" ? <OrgHolder /> : <Student />}
