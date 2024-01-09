@@ -9,4 +9,4 @@ COPY . ./
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt 
 # Run
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
+CMD ["uvicorn", "student_service:app", "--host", "0.0.0.0", "--port", "8002"]
