@@ -4,10 +4,11 @@ import mysql.connector
 from pydantic import BaseModel
 from passlib.context import CryptContext
 import uuid
+from firebase-admin import firestore
 
 conn = mysql.connector.connect(
     host="localhost",
-    user="root",
+    user="root", 
     password="",
     database="comm4unity_student"
 )

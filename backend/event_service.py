@@ -7,10 +7,12 @@ from datetime import datetime
 import requests
 
 conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="comm4unity_event"
+    host="35.199.165.211",
+    port=3306,  # Replace with your actual MySQL port if it's different
+    user="stephanie",
+    password="staniswinata10",
+    database="events",
+    auth_plugin="mysql_native_password",
 )
 
 app = FastAPI()
@@ -33,62 +35,6 @@ class Event(BaseModel):
     link: str
     # o_id: str #organisasinya
 
-@app.post("/event/create_event/{o_id}")
-def create_event(o_id: str, event: Event):
-    # Generate a new UUID for the event id
-    event_id = uuid.uuid4()
-
-    cursor = conn.cursor()
-    try:
-        # Check if the organization exists
-        event_response = requests.get(f"http://localhost:8001/organization/{o_id}")
-        if event_response.status_code != 200:
-            raise HTTPException(status_code=404, detail="Organization not found")
-
-        query = (
-            "INSERT INTO event (e_id, title, date, start_time, end_time, location, type, description, link, o_id) "
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        )
-        event_data = (str(event_id), event.title, event.date, event.start_time, event.end_time,
-                      event.location, event.type, event.description, event.link, o_id)
-        cursor.execute(query, event_data)
-        conn.commit()
-      
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error creating event: {str(e)}")
-    finally:
-        cursor.close()
-
-    return {"message": "Event created successfully"}
-
-# @app.post("/event/create_event")
-# def create_event(event: Event):
-#     # Generate a new UUID for the event id
-#     event_id = uuid.uuid4()
-
-#     cursor = conn.cursor()
-#     try:
-#         # Check if the organization exists
-#         event_response = requests.get(f"http://localhost:8001/organization/{event.o_id}")
-#         if event_response.status_code != 200:
-#             raise HTTPException(status_code=404, detail="Organization not found")
-
-#         query = (
-#             "INSERT INTO event (e_id, title, date, start_time, end_time, location, type, description, link, o_id) "
-#             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-#         )
-#         event_data = (str(event_id), event.title, event.date, event.start_time, event.end_time,
-#                       event.location, event.type, event.description, event.link, event.o_id)
-#         cursor.execute(query, event_data)
-#         conn.commit()
-      
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error creating registration: {str(e)}")
-#     finally:
-#         cursor.close()
-
-#     return {"message": "Event created successfully"}
-
 @app.get("/event/get_all_events")
 def get_all_events():
     cursor = conn.cursor(dictionary=True)
@@ -96,7 +42,25 @@ def get_all_events():
         query = "SELECT * FROM event"
         cursor.execute(query)
         events = cursor.fetchall()
+        events_details = []
+        print(events)
+        # for event in events:
+        #     id, date, start, end, location, reward, description, rlink, ilink, org_id, title = event
+        #     events_details.append({
+        #         "id": id, 
+        #         "title":title, 
+        #         "date":date,
+        #         "start_time": start,
+        #         "end_time": end,
+        #         "location": location,
+        #         "type": reward,
+        #         "description": description,
+        #         "regist_link":rlink,
+        #         "image_link":ilink,
+        #         "org_id": org_id,
+        #     })
         return events
+        # return events
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:

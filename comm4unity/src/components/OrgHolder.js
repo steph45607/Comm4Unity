@@ -8,9 +8,10 @@ import "../styles/orgHolder.css";
 // import EventBtn from "./event-btn";
 // import events from "../assets/events.js"
 // import { Link } from "react-router-dom";
+import { backend_url } from "./CONST";
 
 function OrgHolder() {
-  const backend_url = "http://127.0.0.1:8000";
+  // const backend_url = "http://127.0.0.1:8000";
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -50,34 +51,13 @@ function OrgHolder() {
       })
       .then((response) => {
         console.log(response);
+        alert("Submitted! Check your profile!")
       })
       .catch((error) => {
         console.log(error);
         console.log(event);
+        alert("Error, please contact admin.")
       });
-
-    // try {
-    //   const response = await fetch(
-    //     `${backend_url}/event/create_event/${event.o_id}`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(data),
-    //     }
-    //   );
-
-    //   const data = await response.json();
-
-    //   if (response.ok) {
-    //     setMessage(data.message);
-    //   } else {
-    //     setMessage(`Error: ${data.detail}`);
-    //   }
-    // } catch (error) {
-    //   setMessage(`Error: ${error.message}`);
-    // }
   };
 
   const fetchUserName = async () => {
@@ -215,7 +195,7 @@ function OrgHolder() {
             <span class="bar"></span>
             <label className="labelform">Image Link</label>
           </div>
-
+          <p className="message-popup">Please wait until pop up message appears</p>
           <button
             type="submit"
             className="formbtn"
@@ -240,7 +220,6 @@ function OrgHolder() {
           {/* <button type="submit">Submit</button> */}
         </div>
       </form>
-      <p>{message}</p>
     </div>
   );
 }

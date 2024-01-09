@@ -8,7 +8,26 @@ import { backend_url } from "./CONST";
 function OrgProfile() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
-  const [events, setEvents] = useState("");
+  const [events, setEvents] = useState([]);
+
+  const fetchUserEvents = async () => {
+    try {
+      const userUid = user?.uid;
+      console.log(user?.uid);
+
+      if (!userUid) {
+        return;
+      }
+
+      const userEventsResponse = await axios.get(
+        `${backend_url}/events/get_events/${userUid}`
+      );
+      console.log(userEventsResponse);
+      setEvents(userEventsResponse.data);
+    } catch (error) {
+      console.error("Error fetching user events:", error.message);
+    }
+  };
 
   const fetchUserName = async () => {
     try {
@@ -32,8 +51,8 @@ function OrgProfile() {
 
   useEffect(() => {
     if (loading) return;
-    // if(!user) return Navigate("/");
     fetchUserName();
+    fetchUserEvents();
   });
 
   return (
@@ -41,6 +60,9 @@ function OrgProfile() {
       <h1>{name}</h1>
       <h3>Your Events:</h3>
       <div className="events-row"></div>
+      <p>{events.map(event =>(
+        <div>{event.title}</div>
+      ))}</p>
     </div>
   );
 }
