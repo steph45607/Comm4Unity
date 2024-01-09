@@ -1,0 +1,50 @@
+.dropdown-menu {
+    list-style: none;
+    align-items: flex-end;
+    position: fixed;
+    right: 1.8%;
+    left: auto;
+    max-width: 100%;
+    padding:10px;
+    background:white;
+}
+
+.dropdown-menu li {
+    /* background: rgb(94, 94, 94); */
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px;
+    /* color:white; */
+}
+
+.dropdown-menu li:hover {
+    background: rgb(131, 131, 131);
+}
+
+.dropdown-menu.clicked {
+    display: none;
+}
+
+.displayname{
+    font-size: 18px;
+    color: black;
+}
+
+.dropdownname {
+    color: black;
+}
+
+.dropdowntext{
+    font-size:14px;
+    font-weight: bold;
+}
+
+.logoutbtn{
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.logout{
+    background-color:rgb(233, 233, 233);
+}

@@ -9,3 +9,48 @@ img {
 .navbar-top {
     margin: 1em;
 }
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 4%;
+}
+
+.ultext{
+    padding: 0px;
+}
+
+.profile{
+    border: none;
+    cursor:pointer;
+    padding:10px;
+    /* margin:20px; */
+}
+
+.profile:hover{
+    background:#191c20;
+    border-radius:10px;
+}
+
+.profile_bar{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-right:10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 80px;
+  }
